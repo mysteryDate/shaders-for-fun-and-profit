@@ -3,73 +3,16 @@
   <head>
     <meta charset="utf-8">
     <title>Shaders for fun and profit</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <style type="text/css">
-      html, body {
-        margin: 0;
-        height: 100%;
-      }
     </style>
   </head>
   <body>
   </body>
-<script type="text/javascript">
-var canvas = document.createElement("canvas");
-canvas.width = document.body.clientWidth;
-canvas.height = document.body.clientHeight;
-document.body.appendChild(canvas);
-var gl = canvas.getContext("webgl");
-var glProgram = gl.createProgram();
-
-function init(shadercode) {
-  const vertexShader = gl.createShader(gl.VERTEX_SHADER);
-  gl.shaderSource(vertexShader, "attribute vec2 pos;void main(){gl_Position=vec4(pos,0,1);}");
-  gl.compileShader(vertexShader);
-  gl.attachShader(glProgram, vertexShader);
-
-  const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
-  gl.shaderSource(fragmentShader, shadercode);
-  gl.compileShader(fragmentShader);
-  if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
-    console.error(gl.getShaderInfoLog(fragmentShader));
-  }
-
-  gl.attachShader(glProgram, fragmentShader);
-  gl.linkProgram(glProgram);
-  if (!gl.getProgramParameter(glProgram, gl.LINK_STATUS)) {
-    console.error(gl.getProgramInfoLog(glProgram));
-  }
-
-  gl.useProgram(glProgram);
-
-  const bf = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, bf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Int8Array([-3, 1, 1, -3, 1, 1]), gl.STATIC_DRAW);
-
-  gl.enableVertexAttribArray(0);
-  gl.vertexAttribPointer(0, 2, gl.BYTE, 0, 0, 0);
-
-  gl.uniform2f(gl.getUniformLocation(glProgram, "u_resolution"), canvas.width, canvas.height);
-  gl.uniform2f(gl.getUniformLocation(glProgram, "u_mouse"), 0, 0);
-  gl.drawArrays(6, 0, 3);
-}
-fetch("shaders/romanesco.glsl")
-  .then(response => response.text())
-  .then((data) => {
-    init(data);
-    update();
-  });
-
-function update() {
-  gl.uniform1f(gl.getUniformLocation(glProgram, "u_time"), performance.now() / 1000);
-  gl.drawArrays(6, 0, 3);
-  requestAnimationFrame(update);
-}
-onmousemove = function(e) {
-  var x = e.clientX / document.body.clientWidth;
-  var y = 1.0 - e.clientY / document.body.clientHeight;
-  gl.uniform2f(gl.getUniformLocation(glProgram, "u_mouse"), x, y);
-}
-// update();
-
-</script>
+  <script type="text/javascript" src="init_shader.js"></script>
+  <script type="text/javascript">
+    var canvas = document.createElement("canvas");
+    document.body.appendChild(canvas);
+    createShaderCanvas(canvas, "../shaders/loading.glsl");
+  </script>
 </html>

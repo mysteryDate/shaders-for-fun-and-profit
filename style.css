@@ -1,0 +1,56 @@
+:root {
+  --blue: #4285F4;
+  --red: #EA4335;
+  --green: #34A853;
+  --yellow: #34A853;
+  --dark-blue: #185ABC;
+  --dark-red: #B31412;
+  --dark-yellow: #EA8600;
+  --dark-green: #137333;
+}
+
+#foo {
+    color: var(--main-color);
+}
+html, body {
+  /* margin: 0; */
+  height: 100%;
+}
+canvas {
+  display: none;
+  border: 1px solid magenta;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+h1 {
+  padding-top: 170px;
+  font-size: 62px;
+  padding-left: 67px;
+  color: var(--dark-blue);
+}
+@font-face {
+  font-family: "Google Sans";
+  src: url("ProductSans-Medium.ttf") format("truetype");
+}
+ul {
+  padding-left: 80px;
+  list-style: none;
+  font-size: 24px;
+}
+* {
+  font-family: 'Google Sans', sans-serif;
+}
+.NextButton {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+}
+.PreviousButton {
+  position: fixed;
+  left: 14px;
+  bottom: 14px;
+}
+a:visited {
+  color: var(--dark-blue);
+}

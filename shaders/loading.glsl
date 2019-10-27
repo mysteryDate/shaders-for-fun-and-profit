@@ -7,6 +7,8 @@
 
 #define tau 6.283185
 
+precision mediump float;
+
 uniform vec2 u_resolution;
 uniform float u_time;
 
@@ -27,11 +29,10 @@ void main()
       float t = pow(
         fract(u_time * SPEED + (float(i) * DOTOFFSET)), POWER);
       vec2 o = vec2(sin(t*tau), cos(t*tau)) * 0.2;
-        float dist = length(uv+o) - 0.01;
-        if (dist < d) {
-          col = mix(topColor, bottomColor, cos(t*tau)*0.5 + 0.5);
-        }
-    	d = smoothmin(d, dist, 0.04);
+      float dist = length(uv+o) - 0.01;
+      if (dist < d)
+        col = mix(topColor, bottomColor, cos(t*tau)*0.5 + 0.5);
+      d = smoothmin(d, dist, 0.04);
     }
     col = mix(col, vec3(1.0, 1.0, 0.9), smoothstep(0.0, 0.005, d));
 

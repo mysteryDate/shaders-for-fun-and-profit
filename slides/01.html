@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shaders For Fun And Profit</title>
+  <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> -->
+  <link rel="stylesheet" type="text/css" href="../style.css"/>
+  <style type="text/css" href="../style.css"></style>
+</head>
+<body>
+  <h1>Shaders For Fun And Profit</h1>
+  <ul>
+    <li>Aaron Krajeski</li>
+    <li><a href="https://github.com/mysteryDate/shaders-for-fun-and-profit">Github Repo for this Talk</a></li>
+  </ul>
+  <a class="NextButton" href="02-What-is-a-shader.html">What is a shader? --></a>
+  <canvas id="canvas"></canvas>
+</body>
+<script type="text/javascript" src="../init_shader.js"></script>
+<script type="text/javascript">
+  var canvas = document.getElementById("canvas"); 
+  canvas.width = 512;
+  canvas.height = 512;
+  createShaderCanvas(canvas, "../shaders/loading.glsl");
+</script>
+</html>
