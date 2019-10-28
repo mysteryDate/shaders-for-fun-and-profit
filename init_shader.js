@@ -4,7 +4,9 @@ function init(shadercode) {
   const vertexShader = gl.createShader(gl.VERTEX_SHADER);
   gl.shaderSource(vertexShader, `
     attribute vec2 pos;
+    varying vec2 v_uv;
     void main() {
+      v_uv = pos;
       gl_Position = vec4(pos, 0, 1);
     }`);
   gl.compileShader(vertexShader);
@@ -27,18 +29,21 @@ function init(shadercode) {
 
   const bf = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, bf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Int8Array([-3, 1, 1, -3, 1, 1]), gl.STATIC_DRAW);
+  gl.bufferData(gl.ARRAY_BUFFER, new Int8Array([-3, 1, 1, -3, 1, 1]),
+    gl.STATIC_DRAW);
 
   gl.enableVertexAttribArray(0);
   gl.vertexAttribPointer(0, 2, gl.BYTE, 0, 0, 0);
 
-  gl.uniform2f(gl.getUniformLocation(glProgram, "u_resolution"), canvas.width, canvas.height);
+  gl.uniform2f(gl.getUniformLocation(glProgram, "u_resolution"), canvas.width,
+    canvas.height);
   gl.uniform2f(gl.getUniformLocation(glProgram, "u_mouse"), 0, 0);
   gl.drawArrays(6, 0, 3);
 }
 
 function update() {
-  gl.uniform1f(gl.getUniformLocation(glProgram, "u_time"), performance.now() / 1000);
+  gl.uniform1f(gl.getUniformLocation(glProgram, "u_time"),
+    performance.now() / 1000);
   gl.drawArrays(6, 0, 3);
   requestAnimationFrame(update);
 }
