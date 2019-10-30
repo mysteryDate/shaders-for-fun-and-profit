@@ -2,13 +2,11 @@
 #define DOTOFFSET 0.04
 #define SPEED 0.2
 #define POWER 3.0
-#define topColor    vec3(0.3, 0.6, 1.0)
-#define bottomColor vec3(1.0, 0.4, 0.3)
-
+#define TOPCOLOR    vec3(0.3, 0.6, 1.0)
+#define BOTTOMCOLOR vec3(1.0, 0.4, 0.3)
 #define tau 6.283185
 
 precision mediump float;
-
 uniform vec2 u_resolution;
 uniform float u_time;
 
@@ -31,7 +29,7 @@ void main()
       vec2 o = vec2(sin(t*tau), cos(t*tau)) * 0.2;
       float dist = length(uv+o) - 0.01;
       if (dist < d)
-        col = mix(topColor, bottomColor, cos(t*tau)*0.5 + 0.5);
+        col = mix(vec3(0.3, 0.6, 1.0), vec3(0.3, 0.6, 1.0), cos(t*tau)*0.5 + 0.5);
       d = smoothmin(d, dist, 0.04);
     }
     col = mix(col, vec3(1.0, 1.0, 0.9), smoothstep(0.0, 0.005, d));
