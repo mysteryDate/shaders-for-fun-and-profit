@@ -12,7 +12,8 @@
   <script type="text/javascript" src="init_shader.js"></script>
   <script type="text/javascript">
     var canvas = document.createElement("canvas");
+    canvas.width = canvas.height = 512;
     document.body.appendChild(canvas);
-    createShaderCanvas(canvas, "../shaders/loading.glsl");
+    createShaderCanvas(canvas, "../shaders/test.glsl");
   </script>
 </html>
