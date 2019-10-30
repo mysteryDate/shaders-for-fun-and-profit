@@ -29,12 +29,14 @@ function init(shadercode) {
 
   const bf = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, bf);
-  gl.bufferData(gl.ARRAY_BUFFER, new Int8Array([-3, 1, 1, -3, 1, 1]), gl.STATIC_DRAW);
+  gl.bufferData(gl.ARRAY_BUFFER, new Int8Array([-3, 1, 1, -3, 1, 1]),
+    gl.STATIC_DRAW);
 
   gl.enableVertexAttribArray(0);
   gl.vertexAttribPointer(0, 2, gl.BYTE, 0, 0, 0);
 
-  gl.uniform2f(gl.getUniformLocation(glProgram, "u_resolution"), canvas.width, canvas.height);
+  gl.uniform2f(gl.getUniformLocation(glProgram, "u_resolution"), canvas.width,
+    canvas.height);
   gl.uniform2f(gl.getUniformLocation(glProgram, "u_mouse"), 0, 0);
   const texture = loadTexture(gl, 'textures/cait.jpg');
   console.log(gl.getUniformLocation(glProgram, "u_resolution"));
@@ -42,7 +44,8 @@ function init(shadercode) {
 }
 
 function update() {
-  gl.uniform1f(gl.getUniformLocation(glProgram, "u_time"), performance.now() / 1000);
+  gl.uniform1f(gl.getUniformLocation(glProgram, "u_time"),
+    performance.now() / 1000);
   gl.drawArrays(6, 0, 3);
   requestAnimationFrame(update);
 }
